@@ -3,45 +3,45 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 const pizzaData = [
   {
-    name: "Focaccia",
+    name: "Tandoori Mushroom Pizza",
     ingredients: "Bread with italian olive oil and rosemary",
     price: 6,
-    photoName: "pizzas/focaccia.jpg",
+    photoName: "pizzas/Tandoori-Mushroom-Pizza-Featured-Image.jpg",
     soldOut: false,
   },
   {
-    name: "Pizza Margherita",
+    name: "Chicken Tikka Masala Pizza",
     ingredients: "Tomato and mozarella",
     price: 10,
-    photoName: "pizzas/margherita.jpg",
+    photoName: "pizzas/chicken-tikka-masala-pizza-thumb.jpg",
     soldOut: false,
   },
   {
-    name: "Pizza Spinaci",
+    name: "Tandoori Vegetarian Pizza",
     ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
     price: 12,
-    photoName: "pizzas/spinaci.jpg",
+    photoName: "pizzas/Vegetarian-Tandoori-Naan-Pizza-FF3.jpg",
     soldOut: false,
   },
   {
-    name: "Pizza Funghi",
+    name: "Paneer Pizza",
     ingredients: "Tomato, mozarella, mushrooms, and onion",
     price: 12,
-    photoName: "pizzas/funghi.jpg",
+    photoName: "pizzas/paneer-pizza-recipe-1.jpg",
     soldOut: false,
   },
   {
-    name: "Pizza Salamino",
+    name: "Desi Pizza",
     ingredients: "Tomato, mozarella, and pepperoni",
     price: 15,
-    photoName: "pizzas/salamino.jpg",
+    photoName: "pizzas/butterchickenpizzanumber2top.jpg",
     soldOut: true,
   },
   {
-    name: "Pizza Prosciutto",
+    name: "Indian Chickpea Pizza",
     ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
     price: 18,
-    photoName: "pizzas/prosciutto.jpg",
+    photoName: "pizzas/chickpea-and-spinach-masala-pizza-3.jpg",
     soldOut: false,
   },
 ];
@@ -69,8 +69,30 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Pizzas</h2>
-      <Pizza />
+      {/* PROPS - EVE numbers and boolean in quotes, but if u want no use {} */}
+      <Pizza
+        name="Focaccia"
+        ingredients="Bread with italian olive oil and rosemary"
+        price={6}
+        photoName="pizzas/paneer-pizza-recipe-1.jpg"
+        soldOut="false"
+      />
     </main>
+  );
+}
+
+//pizza component
+function Pizza(props) {
+  console.log("props to pizza component are :", props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
+    </div>
   );
 }
 
@@ -80,24 +102,11 @@ function Footer() {
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
-  // if (hour >= openHour && hour <= closeHour) {
-  //   //2 times because of the strict mode
-  //   alert("We are open now!");
-  // } else {
-  //   alert("Sorry! We are closed. Come back tomorrow!");
-  // }
+
   return (
     <footer className="footer">
       {new Date().toLocaleTimeString()} We are currently open
     </footer>
-  );
-}
-//pizza component
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/focaccia.jpg" alt="focaccia pizza" />
-    </div>
   );
 }
 
