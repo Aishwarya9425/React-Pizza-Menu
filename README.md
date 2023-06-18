@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+![ezgif com-video-to-gif](https://github.com/Aishwarya9425/React-Pizza-Menu/assets/51038336/65f44749-cc84-47ef-bb17-e1243734170e)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
