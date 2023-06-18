@@ -35,14 +35,14 @@ const pizzaData = [
     ingredients: "Tomato, mozarella, and pepperoni",
     price: "₹230",
     photoName: "pizzas/butterchickenpizzanumber2top.jpg",
-    soldOut: true,
+    soldOut: false,
   },
   {
     name: "Indian Chickpea Pizza",
     ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
     price: "₹200",
     photoName: "pizzas/chickpea-and-spinach-masala-pizza-3.jpg",
-    soldOut: false,
+    soldOut: true,
   },
 ];
 
@@ -70,15 +70,19 @@ function Menu() {
   const numPizzas = pizzas.length;
   return (
     <main className="menu">
-      <h2>Our Pizzas</h2>
+      <h2>Are you ready to go to Pizza heaven?😍 </h2>
       {/* send each pizza obj as a prop */}
       {/* only if there is some pizza data */}
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzaData.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <React.Fragment>
+          <p>Authentic. Organic. Yummy. Made with love💗 </p>
+
+          <ul className="pizzas">
+            {pizzaData.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </React.Fragment>
       ) : (
         <p> We're still working on our Menu. Please come back later</p>
       )}
@@ -96,15 +100,15 @@ function Menu() {
 }
 
 //pizza component
-function Pizza(props) {
-  console.log("props to pizza component are :", props);
+function Pizza({ pizzaObj }) {
   return (
-    <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+    // if pizza sold out only that comp needs to be greyed out
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "Sold out!" : pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -120,13 +124,7 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <div className="order">
-          <p>
-            We're open until {closeHour}:00. Dine in or Order from the website.
-            You can also find us on Swiggy!
-          </p>
-          <button className="btn">Order online</button>
-        </div>
+        <Order closeHour={closeHour} />
       ) : (
         <p>
           We are currently closed! Please come back between {openHour}:00 and{" "}
@@ -134,6 +132,18 @@ function Footer() {
         </p>
       )}
     </footer>
+  );
+}
+
+function Order({ closeHour }) {
+  return (
+    <div className="order">
+      <p>
+        We're open until {closeHour}:00. Dine in or Order from the website. You
+        can also find us on Swiggy!
+      </p>
+      <button className="btn">Order online</button>
+    </div>
   );
 }
 
